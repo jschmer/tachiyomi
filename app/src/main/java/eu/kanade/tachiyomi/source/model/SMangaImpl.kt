@@ -6,6 +6,8 @@ class SMangaImpl : SManga {
 
     override lateinit var title: String
 
+    override lateinit var title_alias: String
+
     override var artist: String? = null
 
     override var author: String? = null

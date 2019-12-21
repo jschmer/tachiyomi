@@ -399,7 +399,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         viewer = newViewer
         binding.viewerContainer.addView(newViewer.getView())
 
-        binding.toolbar.title = manga.title
+        binding.toolbar.title = manga.aliasedTitle()
 
         binding.pageSeekbar.isRTL = newViewer is R2LPagerViewer
 

@@ -58,7 +58,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
         chapter_title.text = item.chapter.name
 
         // Set manga title
-        manga_title.text = item.manga.title
+        manga_title.text = item.manga.aliasedTitle()
 
         // Set cover
         GlideApp.with(itemView.context).clear(manga_cover)

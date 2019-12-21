@@ -27,5 +27,6 @@ class MangaTitlePutResolver : PutResolver<Manga>() {
 
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
         put(MangaTable.COL_TITLE, manga.title)
+        put(MangaTable.COL_TITLE_ALIAS, manga.title_alias)
     }
 }

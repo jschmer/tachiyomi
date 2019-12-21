@@ -68,7 +68,8 @@ import uy.kohesive.injekt.injectLazy
  * UI related actions should be called from here.
  */
 class MangaInfoController : NucleusController<MangaInfoPresenter>(),
-        ChangeMangaCategoriesDialog.Listener {
+        ChangeMangaCategoriesDialog.Listener,
+        ChangeMangaTitleAliasDialog.Listener {
 
     private val preferences: PreferencesHelper by injectLazy()
 
@@ -121,7 +122,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         binding.mangaFullTitle.longClicks()
             .onEach {
-                copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
+                ChangeMangaTitleAliasDialog(this@MangaInfoController, binding.mangaFullTitle.text.toString()).showDialog(router, null)
             }
             .launchInUI()
 
@@ -207,10 +208,10 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val view = view ?: return
 
         // update full title TextView.
-        binding.mangaFullTitle.text = if (manga.title.isBlank()) {
+        binding.mangaFullTitle.text = if (manga.aliasedTitle().isBlank()) {
             view.context.getString(R.string.unknown)
         } else {
-            manga.title
+            manga.aliasedTitle()
         }
 
         // Update artist TextView.
@@ -624,4 +625,10 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                     successCallback.intentSender)
         }
     }
+    override fun setTitleAlias(name: String) {
+        presenter.updateMangaTitleAlias(name)
+        val ctrl = parentController as MangaController
+        ctrl.setTitle()
+    }
+
 }

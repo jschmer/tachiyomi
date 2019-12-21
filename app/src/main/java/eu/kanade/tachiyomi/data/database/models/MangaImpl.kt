@@ -10,6 +10,8 @@ open class MangaImpl : Manga {
 
     override lateinit var title: String
 
+    override var title_alias: String = ""
+
     override var artist: String? = null
 
     override var author: String? = null

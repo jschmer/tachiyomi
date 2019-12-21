@@ -8,6 +8,8 @@ interface SManga : Serializable {
 
     var title: String
 
+    var title_alias: String
+
     var artist: String?
 
     var author: String?
@@ -21,6 +23,10 @@ interface SManga : Serializable {
     var thumbnail_url: String?
 
     var initialized: Boolean
+
+    fun aliasedTitle(): String {
+        return if (title_alias.isNotBlank()) title_alias else title
+    }
 
     fun copyFrom(other: SManga) {
         if (other.author != null)

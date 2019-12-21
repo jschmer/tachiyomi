@@ -53,7 +53,7 @@ class HistoryHolder(
         val (manga, chapter, history) = item
 
         // Set manga title
-        manga_title.text = manga.title
+        manga_title.text = manga.aliasedTitle()
 
         // Set source + chapter title
         val formattedNumber = adapter.decimalFormat.format(chapter.chapter_number.toDouble())

@@ -18,6 +18,7 @@ object MangaTypeAdapter {
                 value(it.source)
                 value(it.viewer)
                 value(it.chapter_flags)
+                value(it.title_alias)
                 endArray()
             }
 
@@ -29,6 +30,10 @@ object MangaTypeAdapter {
                 manga.source = nextLong()
                 manga.viewer = nextInt()
                 manga.chapter_flags = nextInt()
+                try {
+                    manga.title_alias = nextString()
+                } catch(e: java.lang.IllegalStateException)
+                {}
                 endArray()
                 manga
             }

@@ -34,7 +34,7 @@ class LibraryGridHolder(
      */
     override fun onSetValues(item: LibraryItem) {
         // Update the title of the manga.
-        title.text = item.manga.title
+        title.text = item.manga.aliasedTitle()
 
         // Update the unread count and its visibility.
         with(unread_text) {

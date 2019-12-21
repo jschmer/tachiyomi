@@ -44,6 +44,7 @@ class SearchPresenter(
         val localManga = super.networkToLocalManga(sManga, sourceId)
         // For migration, displayed title should always match source rather than local DB
         localManga.title = sManga.title
+        localManga.title_alias = sManga.title_alias
         return localManga
     }
 

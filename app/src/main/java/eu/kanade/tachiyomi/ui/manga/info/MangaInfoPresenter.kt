@@ -157,4 +157,10 @@ class MangaInfoPresenter(
     fun moveMangaToCategory(manga: Manga, category: Category?) {
         moveMangaToCategories(manga, listOfNotNull(category))
     }
+    fun updateMangaTitleAlias(alias: String) {
+        manga.title_alias = alias
+        db.updateMangaTitle(manga).executeAsBlocking()
+        sendMangaToView()
+    }
+
 }
