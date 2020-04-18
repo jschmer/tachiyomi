@@ -44,7 +44,7 @@ class SearchPresenter(
         val localManga = super.networkToLocalManga(sManga, sourceId)
         // For migration, displayed title should always match source rather than local DB
         localManga.title = sManga.title
-        localManga.title_alias = sManga.title_alias
+        // network search doesn't provide title alias
         return localManga
     }
 
@@ -118,6 +118,7 @@ class SearchPresenter(
                 db.updateMangaFavorite(prevManga).executeAsBlocking()
             }
             manga.favorite = true
+            manga.title_alias = prevManga.title_alias
             db.updateMangaFavorite(manga).executeAsBlocking()
 
             // SearchPresenter#networkToLocalManga may have updated the manga title, so ensure db gets updated title

@@ -64,6 +64,6 @@ class MigrationPresenter(
     }
 
     private fun libraryToMigrationItem(library: List<Manga>, sourceId: Long): List<MangaItem> {
-        return library.filter { it.source == sourceId }.map(::MangaItem)
+        return library.filter { it.source == sourceId }.sortedBy { it.aliasedTitle() }.map(::MangaItem)
     }
 }
